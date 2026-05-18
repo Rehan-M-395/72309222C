@@ -20,18 +20,28 @@ const NotificationPage = () => {
 
     return (
 
-        <div>
+        <div style={{ padding: "20px" }}>
 
             <h1>Notifications</h1>
 
             {
-                notifications?.map((item, index) => (
+                notifications.map((item) => (
 
-                    <div key={index}>
+                    <div
+                        key={item.ID}
+                        style={{
+                            border: "1px solid gray",
+                            padding: "10px",
+                            marginBottom: "10px",
+                            borderRadius: "10px"
+                        }}
+                    >
 
-                        <h3>{item.message}</h3>
+                        <h3>{item.Message}</h3>
 
-                        <p>{item.type}</p>
+                        <p>{item.Type}</p>
+
+                        <small>{item.Timestamp}</small>
 
                     </div>
                 ))
