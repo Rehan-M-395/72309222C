@@ -1,4 +1,7 @@
 import axios from "axios";
+import dotenv from 'dotenv';
+
+dotenv.config({ path: "../.env" });
 
 export const fetchNotifications = async (
     page = 1,
@@ -15,6 +18,9 @@ export const fetchNotifications = async (
                     page,
                     limit,
                     notification_type
+                },
+                headers: {
+                    Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
                 }
             }
         );

@@ -15,7 +15,7 @@ export const getNotifications = async (req, res) => {
             limit,
             notification_type
         );
-
+        console.log(data);
         res.status(200).json(data);
 
     } catch (error) {
