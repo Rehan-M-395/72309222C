@@ -1,4 +1,14 @@
 import { useEffect, useState } from "react";
+
+import {
+    Container,
+    Typography,
+    Card,
+    CardContent,
+    Chip,
+    Stack
+} from "@mui/material";
+
 import { getNotifications } from "../services/notificationService";
 
 const NotificationPage = () => {
@@ -20,34 +30,70 @@ const NotificationPage = () => {
 
     return (
 
-        <div style={{ padding: "20px" }}>
+        <Container maxWidth="md" sx={{ mt: 4 }}>
 
-            <h1>Notifications</h1>
+            <Typography
+                variant="h4"
+                fontWeight="bold"
+                gutterBottom
+            >
+                Notifications
+            </Typography>
 
-            {
-                notifications.map((item) => (
+            <Stack spacing={2}>
 
-                    <div
-                        key={item.ID}
-                        style={{
-                            border: "1px solid gray",
-                            padding: "10px",
-                            marginBottom: "10px",
-                            borderRadius: "10px"
-                        }}
-                    >
+                {
+                    notifications.map((item) => (
 
-                        <h3>{item.Message}</h3>
+                        <Card
+                            key={item.ID}
+                            sx={{
+                                borderRadius: 3,
+                                boxShadow: 3
+                            }}
+                        >
 
-                        <p>{item.Type}</p>
+                            <CardContent>
 
-                        <small>{item.Timestamp}</small>
+                                <Stack
+                                    direction="row"
+                                    justifyContent="space-between"
+                                    alignItems="center"
+                                    mb={1}
+                                >
 
-                    </div>
-                ))
-            }
+                                    <Typography variant="h6">
+                                        {item.Message}
+                                    </Typography>
 
-        </div>
+                                    <Chip
+                                        label={item.Type}
+                                        color={
+                                            item.Type === "Placement"
+                                                ? "success"
+                                                : item.Type === "Result"
+                                                    ? "primary"
+                                                    : "warning"
+                                        }
+                                    />
+                                </Stack>
+
+                                <Typography
+                                    variant="body2"
+                                    color="text.secondary"
+                                >
+                                    {item.Timestamp}
+                                </Typography>
+
+                            </CardContent>
+
+                        </Card>
+                    ))
+                }
+
+            </Stack>
+
+        </Container>
     );
 };
 
